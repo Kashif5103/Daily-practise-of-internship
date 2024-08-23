@@ -17,18 +17,32 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password']; // Note: Consider hashing passwords before storing
 
-// Prepare and bind
-$stmt = $conn->prepare("INSERT INTO Student (name, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $name, $email, $password);
+// Check if the email already exists
+$checkEmail = $conn->prepare("SELECT id FROM Student WHERE email = ?");
+$checkEmail->bind_param("s", $email);
+$checkEmail->execute();
+$checkEmail->store_result();
 
-// Execute the statement
-if ($stmt->execute()) {
-    echo "New record created successfully";
+
+if ($checkEmail->num_rows > 0) {
+    echo "Error: This email is already registered!";
 } else {
-    echo "Error: " . $stmt->error;
+    // Prepare and bind
+    $stmt = $conn->prepare("INSERT INTO Student (name, email, password) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $name, $email, $password);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
 
-// Close connections
-$stmt->close();
+
+
+$checkEmail->close();
 $conn->close();
 ?>

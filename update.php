@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // replace with your MySQL username
-$password = ""; // replace with your MySQL password
+$username = "root";
+$password = "";
 $dbname = "catmarketing";
 
 // Create connection
@@ -12,24 +12,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get form values
-$id = $_POST['id'];
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+// Check if ID is set
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-// Prepare and bind
-$stmt = $conn->prepare("UPDATE Student SET name = ?, email = ?, password = ? WHERE id = ?");
-$stmt->bind_param("sssi", $name, $email, $password, $id);
+    $sql = "UPDATE Student SET name='$name', email='$email', password='$password' WHERE id=$id";
 
-// Execute the statement
-if ($stmt->execute()) {
-    echo "Data updated successfully!";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully!";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Error: ID not provided!";
 }
 
-// Close connections
-$stmt->close();
 $conn->close();
 ?>

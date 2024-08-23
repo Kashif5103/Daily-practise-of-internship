@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // replace with your MySQL username
-$password = ""; // replace with your MySQL password
+$username = "root";
+$password = "";
 $dbname = "catmarketing";
 
 // Create connection
@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the id from the request
 $id = $_POST['id'];
 
 $sql = "DELETE FROM Student WHERE id = $id";

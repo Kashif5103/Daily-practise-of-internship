@@ -22,7 +22,10 @@ if ($result->num_rows > 0) {
                 <td>{$row['name']}</td>
                 <td>{$row['email']}</td>
                 <td>{$row['password']}</td>
-                <td><button>Edit</button> <button>Delete</button></td>
+                <td>
+                    <button class='btn btn-edit' data-id='{$row['id']}'>Edit</button>
+                    <button class='btn btn-delete' data-id='{$row['id']}'>Delete</button>
+                </td>
               </tr>";
     }
 } else {
