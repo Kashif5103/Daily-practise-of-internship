@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Ajax -- PHP -- Bootstrap -- CRUD</title>
+    <style>
+        .header {
+            background-color: #5bc0de;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .form-container, .details-container {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            background-color: #f0f9ff;
+            margin-bottom: 20px;
+        }
+        .details-container {
+            background-color: #fff3cd;
+        }
+        .btn-primary {
+            margin: 10px;
+            background-color: #0275d8;
+            border-color: #0275d8;
+        }
+        .btn-primary:hover {
+            background-color: #025aa5;
+            border-color: #025aa5;
+        }
+        .btn-edit {
+            background-color: #ffc107; /* Yellow for Edit */
+            color: white;
+            margin-right: 5px;
+        }
+        .btn-edit:hover {
+            background-color: #e0a800;
+        }
+        .btn-delete {
+            background-color: #dc3545; /* Red for Delete */
+            color: white;
+        }
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+        .alert {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Ajax -- PHP -- Bootstrap -- CRUD
+        </div>
+        
+        <div class="row">
+            <!-- Form Container -->
+            <div class="col-md-5">
+                <div class="form-container">
+                    <h4 class="text-center">Add / Insert Data</h4>
+                    <form id="insert_form">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        
+                        <!-- Status Message -->
+                        <div id="status_message" class="alert" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Show Details Container -->
+            <div class="col-md-7">
+                <div class="details-container">
+                    <h4 class="text-center">Show Details</h4>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user_table">
+                            <!-- Data will be loaded here using AJAX -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/myajax.js"></script>
+</body>
+</html>
