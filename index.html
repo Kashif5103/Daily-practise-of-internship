@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character encoding and responsive behavior -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Include Bootstrap CSS for styling -->
     <link rel="stylesheet" href="css/bootstrap.css">
+    
+    <!-- Page title -->
     <title>Ajax -- PHP -- Bootstrap -- CRUD</title>
+    
+    <!-- Custom CSS for header, form, details container, and buttons -->
     <style>
         .header {
             background-color: #5bc0de;
@@ -62,16 +69,18 @@
     </style>
 </head>
 <body>
+    <!-- Main container and header for the application -->
     <div class="container">
         <div class="header">
             Ajax -- PHP -- Bootstrap -- CRUD
         </div>
         
         <div class="row">
-            <!-- Form Container -->
+            <!-- Form container with inputs for name, email, and password -->
             <div class="col-md-5">
                 <div class="form-container">
                     <h4 class="text-center">Add / Insert Data</h4>
+                    <!-- Form for adding new records -->
                     <form id="insert_form">
                         <div class="form-group">
                             <label for="name">Name:</label>
@@ -87,16 +96,17 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Submit</button>
                         
-                        <!-- Status Message -->
+                        <!-- Status message container to display success/error messages -->
                         <div id="status_message" class="alert" role="alert"></div>
                     </form>
                 </div>
             </div>
 
-            <!-- Show Details Container -->
+            <!-- Details container to display the list of users -->
             <div class="col-md-7">
                 <div class="details-container">
                     <h4 class="text-center">Show Details</h4>
+                    <!-- Table to show user details with actions (Edit/Delete) -->
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr>
@@ -108,7 +118,7 @@
                             </tr>
                         </thead>
                         <tbody id="user_table">
-                            <!-- Data will be loaded here using AJAX -->
+                            <!-- User data will be loaded into the table via AJAX -->
                         </tbody>
                     </table>
                 </div>
@@ -116,6 +126,7 @@
         </div>
     </div>
 
+    <!-- Include jQuery, Bootstrap, and custom AJAX scripts -->
     <script src="js/jQuery.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/myajax.js"></script>
