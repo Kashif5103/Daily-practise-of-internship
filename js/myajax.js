@@ -93,6 +93,32 @@ $(document).ready(function() {
             });
         }
     });
+    $(document).ready(function () {
+        $('#email').on('blur', function () {
+            var email = $(this).val().trim();
+    
+            if (email != '') {
+                $.ajax({
+                    url: "check_email.php",
+                    method: "POST",
+                    data: { email: email },
+                    success: function (response) {
+                        if (response.trim() == 'taken') {
+                            $('#email-status').html('<span style="color: red;">✖ Email Already registered</span>');
+                        } else if (response.trim() == 'available') {
+                            $('#email-status').html('<span style="color: green;">✔ Email Available</span>');
+                        }
+                    },
+                    error: function () {
+                        $('#email-status').html('<span style="color: red;">Error checking email</span>');
+                    }
+                });
+            } else {
+                $('#email-status').html('');
+            }
+        });
+    });
+    
 
     // Initial load of data when the document is ready
     loadData();
